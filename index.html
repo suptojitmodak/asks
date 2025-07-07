@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- এখানে KEY বসিয়ে সরাসরি list.js লোড করো -->
+  <script src="https://aksk.vercel.app/list.js?key=MY_SECRET_KEY"></script>
+  
+  <script>
+    const slug = window.location.pathname.replace(/^\/+/, ""); // /abc → abc
+
+    if (!slug) {
+      document.body.innerHTML = "<h2>No path specified.</h2>";
+    } else {
+      const map = window.redirectMap || {};
+      const target = map[slug];
+
+      if (target) {
+        window.location.replace(target);
+      } else {
+        document.body.innerHTML = `<h2>No redirect found for <code>/${slug}</code>.</h2>`;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Redirecting...</h2>
+</body>
+</html>
